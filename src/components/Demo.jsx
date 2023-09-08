@@ -59,6 +59,14 @@ const Demo = () => {
     }
   };
 
+  const handleClick = (indexToRemove) => {
+    const updatedArticles = allArticles.filter((_, index) => index !== indexToRemove);
+    //updating all articles
+    setAllArticles(updatedArticles);
+    //storing it to the localStorage as well
+    localStorage.setItem("articles", JSON.stringify(updatedArticles));
+  };
+
   return (
     <section className='mt-16 w-full max-w-xl'>
       {/* Search */}
@@ -108,6 +116,7 @@ const Demo = () => {
               <p className='flex-1 font-satoshi text-blue-700 font-medium text-sm truncate'>
                 {item.url}
               </p>
+              <p onClick={() => handleClick(index)}>X</p>
             </div>
           ))}
         </div>
